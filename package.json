@@ -1,5 +1,5 @@
 {
-  "name": "react-hooks-async",
+  "name": "@chengsokdara/react-hooks-async",
   "version": "0.0.1",
   "description": "Asynchronous React Hooks",
   "keywords": [
@@ -27,6 +27,7 @@
     "lint-fix": "eslint ./src --ext .ts,.tsx --quiet --fix --ignore-path ./.gitignore",
     "lint-format": "prettier  --loglevel warn --write \"./**/*.{ts,tsx,css,md,json}\" ",
     "lint": "yarn lint-format && yarn lint-fix ",
+    "test": "yarn run tsc && yarn run lint",
     "prepublishOnly": "yarn run build-prod"
   },
   "devDependencies": {
