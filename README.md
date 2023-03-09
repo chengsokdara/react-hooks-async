@@ -4,7 +4,8 @@ Write React hooks in asynchronous way
 
 ---
 
-_Try out useWhisper a React hook for OpenAI Whisper API_  
+_Try out useWhisper a React hook for OpenAI Whisper API_
+
 [https://github.com/chengsokdara/use-whisper](https://github.com/chengsokdara/use-whisper)
 
 - ### Install
@@ -15,16 +16,12 @@ _Try out useWhisper a React hook for OpenAI Whisper API_
 
 - ### Usage
 
+- ###### useCallbackAsync
+
 ```typescript
-import {
-  useCallbackAsync,
-  useEffectAsync,
-} from '@chengsokdara/react-hooks-async'
-import { useState } from 'react'
+import { useCallbackAsync } from '@chengsokdara/react-hooks-async'
 
 const App = () => {
-  const [state, setState] = useState<boolean>(false)
-
   const sampleCallback = useCallbackAsync(
     // will be wrapped in try catch
     async () => {
@@ -37,6 +34,23 @@ const App = () => {
     // dependency list
     []
   )
+
+  return (
+    <div>
+      <button onClick={() => sampleCallback()}>Fire</button>
+    </div>
+  )
+}
+```
+
+- ###### useEffectAsync
+
+```typescript
+import { useEffectAsync } from '@chengsokdara/react-hooks-async'
+import { useState } from 'react'
+
+const App = () => {
+  const [state, setState] = useState<boolean>(false)
 
   useEffectAsync(
     // will be wrapped in try catch
@@ -61,7 +75,36 @@ const App = () => {
       <p>
         <b>State:</b> {state}
       </p>
-      <button onClick={() => sampleCallback()}>Fire</button>
+    </div>
+  )
+}
+```
+
+- ###### useMemoAsync
+
+```typescript
+import { useMemoAsync } from '@chengsokdara/react-hooks-async'
+
+const App = () => {
+  const memoizedValue = useMemoAsync(
+    // will be wrapped in try catch
+    async () => {
+      const response = await promiseFunction()
+      return response + 1
+    },
+    // Optional: catch error
+    (err) => {
+      console.error(err)
+    },
+    // dependency list
+    []
+  )
+
+  return (
+    <div>
+      <p>
+        <b>Value:</b> {memoizedValue}
+      </p>
     </div>
   )
 }
@@ -69,7 +112,6 @@ const App = () => {
 
 - ### Roadmap
 
-  - add useMemo
   - add useTransition
   - add useLayoutEffect
   - add useImperativeHandle

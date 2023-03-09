@@ -3,7 +3,7 @@ import type { Destructor } from './types'
 
 export const useEffectAsync = (
   effect: () => Promise<void>,
-  depsOrDes: DependencyList | Destructor,
+  depsOrDes?: DependencyList | Destructor | null,
   depsOrErr?: DependencyList | ((err: any) => void),
   deps?: DependencyList
 ) => {
